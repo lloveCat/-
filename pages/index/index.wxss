@@ -1,0 +1,39 @@
+/**index.wxss**/
+/* .userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+} */
+
+.return{
+  width: 40px;
+  height: 36px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+.return botton{
+  border: 0px;
+}
+.buttonClass{
+  width: 250px;
+  height: max-content;
+  text-align: center;
+}

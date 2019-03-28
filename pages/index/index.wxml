@@ -1,0 +1,4 @@
+  <view wx:if="{{dataList==null}}">列表为空</view>
+  <view wx:elif ="{{dataList!=null}}">111
+
+  </view>

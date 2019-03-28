@@ -1,0 +1,11 @@
+/* pages/weather/weather.wxss */
+
+.choose{
+  width: 50px;
+  height: 36px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 12px;
+  text-align: center;
+}
