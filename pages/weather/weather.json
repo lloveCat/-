@@ -1,7 +1,6 @@
 {
   "usingComponents": {},
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "天气",
   "backgroundTextStyle": "light",
   "enablePullDownRefresh": true
 }

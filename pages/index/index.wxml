@@ -1,4 +1,11 @@
-  <view wx:if="{{dataList==null}}">列表为空</view>
-  <view wx:elif ="{{dataList!=null}}">111
-
+<scroll-view class='listClass' scroll-x='true' hidden='{{dataList == null}}'>
+  <view class='return' bindtap='returnTap'>
+    返回
   </view>
+  <view wx:for="{{dataList}}" wx:for-item="data" wx:for-index="index">
+    <!--省和市获取到的数据不带weather_Id字段 -->
+    <button bindtap='doBindTap' data-id='{{data.id}}' data-name='{{data.name}}'
+     data-weatherid='{{data.weather_id}}' class='buttonClass'>{{data.name}}
+    </button>
+  </view>
+</scroll-view>
