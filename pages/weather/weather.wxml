@@ -1,9 +1,9 @@
 <view class='container' hidden='{{loadSuccess}}' bindtap='addCountryTap'>
   未选择初始城市，点击进入选择
 </view>
-<view class='allContainer' wx:if='{{basic != null}}' bindtap='hiddenMore'>
+<view class='allContainer' wx:if='{{weatherList != null}}' bindtap='hiddenMore' style='background-image: url({{backgroundImgUrl}});'>
   <view class='topContainer'>
-    <!--头部显示view-->
+    <!--头部显示view--更多及隐藏框-->
     <view class='more' catchtap='moreTap'>更多</view>
     <view class='hiddenClass' hidden='{{moreHidden}}' catchtap='catchHidden'>
       <view wx:for='{{cityList}}' wx:for-item='city' wx:for-index='index'>
@@ -18,43 +18,48 @@
     <text class='lastTime'>{{updateTime}}</text>
   </view>
 
-  <view class='todayContainer'>
-    <!--当前天气view-->
-    <text class='todayTem'>{{now.tmp}}℃</text>
-    <text class='cond'>{{now.cond_txt}}</text>
-    <text class='wind'>{{now.wind_dir}}·{{now.wind_sc}}级</text>
-  </view>
+  <swiper class="swiperContainer" current="{{indexItem}}" duration='300' bindchange='swiperChangeFunc'>
+    <block wx:for="{{weatherList}}" wx:for-item="weather" wx:for-index="index">
+      <swiper-item>
+        <view class='todayContainer'>
+          <!--当前天气view-->
+          <text class='todayTem'>{{weather.HeWeather[0].now.tmp}}℃</text>
+          <text class='cond'>{{weather.HeWeather[0].now.cond_txt}}</text>
+          <text class='wind'>{{weather.HeWeather[0].now.wind_dir}}·{{weather.HeWeather[0].now.wind_sc}}级</text>
+        </view>
 
-  <view class='forecastContainer'>
-    <!--天气预报显示view-->
-    <text class='dailyText'>预报</text>
-    <view wx:for="{{daily_forecast}}" wx:for-item="daily" wx:for-index="index" class='dailyClass'>
-      <!--每条天气预报记录-->
-      <text class="dailyData">{{daily.date}}</text>
-      <text class="dailyCond">{{daily.cond.txt_d}}</text>
-      <text class="dailyTmp">{{daily.tmp.min}}℃~{{daily.tmp.max}}℃</text>
-    </view>
-  </view>
+        <view class='forecastContainer'>
+          <!--天气预报显示view-->
+          <text class='dailyText'>预报</text>
+          <view wx:for="{{weather.HeWeather[0].daily_forecast}}" wx:for-item="daily" wx:for-index="index" class='dailyClass'>
+            <!--每条天气预报记录-->
+            <text class="dailyData">{{daily.date}}</text>
+            <text class="dailyCond">{{daily.cond.txt_d}}</text>
+            <text class="dailyTmp">{{daily.tmp.min}}℃~{{daily.tmp.max}}℃</text>
+          </view>
+        </view>
 
-  <view class='aqiContainer'>
-    <!--空气质量显示view-->
-    <text class='aqiText'>空气质量</text>
-    <view class='aqi'>
-      <!--部分城市获取不到空气质量-->
-      <text class='Num' wx:if='{{aqi.city.aqi != null}}'>{{aqi.city.aqi}}</text>
-      <text class='Num' wx:else='{{aqi.city.aqi != null}}'>not support</text>
-      <text>AQI 指数</text>
-    </view>
-    <view class='pm25'>
-      <text class='Num'>{{aqi.city.pm25}}</text>
-      <text>pm2.5 指数</text>
-    </view>
-  </view>
+        <view class='aqiContainer'>
+          <!--空气质量显示view-->
+          <text class='aqiText'>空气质量</text>
+          <view class='aqi'>
+            <!--部分城市获取不到空气质量-->
+            <text class='Num'>{{weather.HeWeather[0].aqi.city.aqi}}</text>
+            <text>AQI 指数</text>
+          </view>
+          <view class='pm25'>
+            <text class='Num'>{{weather.HeWeather[0].aqi.city.pm25}}</text>
+            <text>pm2.5 指数</text>
+          </view>
+        </view>
 
-  <view class='suggesetionContainer'>
-    <text class='suggestionText'>生活建议</text>
-    <view class='suggestionContent'>舒适度: {{suggestion.comf.txt}}</view>
-    <view class='suggestionContent'>洗车指数: {{suggestion.cw.txt}}</view>
-    <view class='suggestionContent'>运动指数: {{suggestion.sport.txt}}</view>
-  </view>
+        <view class='suggesetionContainer'>
+          <text class='suggestionText'>生活建议</text>
+          <view class='suggestionContent'>舒适度: {{weather.HeWeather[0].suggestion.comf.txt}}</view>
+          <view class='suggestionContent'>洗车指数: {{weather.HeWeather[0].suggestion.cw.txt}}</view>
+          <view class='suggestionContent'>运动指数: {{weather.HeWeather[0].suggestion.sport.txt}}</view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
 </view>

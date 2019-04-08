@@ -17,7 +17,16 @@ var provinceName = null
 Page({
   data: {
     currentLevel: UNKNOW_LEVEL,
-    dataList : null
+    dataList : null,
+    hh: [
+      {
+      h:1,
+      g:2
+      },
+      {
+      h:2,
+      g:3
+      }]
   }, 
   //事件处理函数
   // bindViewTap: function() {
@@ -142,7 +151,8 @@ Page({
           //将获取到的天气
           var index = -1;
           //第一个天气
-          if (app.globalData.weatherList == null) {
+          if (!app.globalData.weatherList) {
+            console.log('weatherList is null')
             app.globalData.weatherList = new Array()
           }
           for (var i = 0; i < app.globalData.weatherList.length; i++) {
@@ -155,6 +165,7 @@ Page({
             }
           }
           //返回本次获取的内存索引
+          console.log(app.globalData.weatherList)
           if(index == -1) {
             index = app.globalData.weatherList.push(res.data)
           }

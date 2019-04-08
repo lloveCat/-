@@ -2,8 +2,6 @@
 /*顶部容器 */
 .allContainer{
   /* background-color: black; */
-  background-image: url('https://cn.bing.com/th?id=OHR.AurovilleIndia_ZH-CN4983141175_1920x1080.jpg&rf=NorthMale_1920x1081920x1080.jpg');
-  background-size:  auto;
   color: white;
 }
 
@@ -37,6 +35,10 @@
   /* display: inline-block; */
   top: 5px;
   text-align: center;
+}
+
+.swiperContainer{
+  height: 750px;
 }
 
 /*当天天气容器 */
@@ -134,6 +136,7 @@
 
 /*更多悬浮窗 */
 .hiddenClass{
+  z-index: 99;
   position: absolute;
    font-size: 14px;
   left:10px;

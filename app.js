@@ -40,6 +40,12 @@ App({
     that: null,
     provinceList: null,   //存储
     weatherList: null,        //存储
-    callback: null
+    callback: null,
+    backgroundImgUrl: {
+      sun: 'https://cn.bing.com/th?id=OHR.AurovilleIndia_ZH-CN4983141175_1920x1080.jpg&rf=NorthMale_1920x1081920x1080.jpg',
+      rain: 'http://www.ouyaoxiazai.com/soft/UploadPic/2016-3/201638163450340.jpg',
+      cloud: 'http://dpic.tiankong.com/7u/vd/QJ6679651500.jpg',
+      snow: 'http://img2.ph.126.net/G8QwvQTaFf3c-iGSrg0dCA==/3866058805221119408.jpg'
+    }
   }
 })
