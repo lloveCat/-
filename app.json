@@ -14,5 +14,10 @@
     "connectSocket": 20000,
     "uploadFile": 20000,
     "downloadFile": 20000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "LH_WE用于获取您所在的城市"
+    }
   }
 }

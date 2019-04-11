@@ -15,10 +15,11 @@
       <view class='addCountry' bindtap='addCountryTap' wx:if='{{cityList[3] == null}}'>
         +添加城市</view>
     </view>
+    <image class="locationImg" src='../../images/location.jpg' bindtap='getLocationCountry'></image>
     <text class='lastTime'>{{updateTime}}</text>
   </view>
 
-  <swiper class="swiperContainer" current="{{indexItem}}" duration='300' bindchange='swiperChangeFunc'>
+  <swiper class="swiperContainer" current="{{indexItem}}" duration='500' bindchange='swiperChangeFunc'>
     <block wx:for="{{weatherList}}" wx:for-item="weather" wx:for-index="index">
       <swiper-item>
         <view class='todayContainer'>

@@ -17,16 +17,7 @@ var provinceName = null
 Page({
   data: {
     currentLevel: UNKNOW_LEVEL,
-    dataList : null,
-    hh: [
-      {
-      h:1,
-      g:2
-      },
-      {
-      h:2,
-      g:3
-      }]
+    dataList : null
   }, 
   //事件处理函数
   // bindViewTap: function() {
@@ -46,6 +37,7 @@ Page({
       wx.redirectTo({
         url: '../weather/weather'
       })
+      return
     }
     if (app.globalData.provinceList) {
       provinceList = app.globalData.provinceList

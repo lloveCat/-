@@ -3,6 +3,7 @@
 .allContainer{
   /* background-color: black; */
   color: white;
+  background-size: 100% 100%;
 }
 
 .topContainer{
@@ -26,6 +27,14 @@
   /* background-color: red; */
 }
 
+.locationImg{
+  margin-top:5px;
+  height:25px;
+  width:25px;
+  opacity: 0.7;
+  z-index: 99;
+}
+
 .lastTime{
   position: absolute;
   width: auto;
@@ -38,7 +47,7 @@
 }
 
 .swiperContainer{
-  height: 750px;
+  height: 710px;
 }
 
 /*当天天气容器 */
@@ -69,7 +78,7 @@
   width: 90%;
   height: auto;
   margin: 10px auto;
-  padding: 10px 5px 5px 10px;
+  padding: 5px 5px 5px 10px;
   /* background: green; */
   position: relative;
   font-size: 12px;
