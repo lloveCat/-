@@ -1,3 +1,9 @@
+<!-- <button bindtap='findUserList'>获取所有用户</button>
+<button bindtap='addUser'>添加用户</button>
+<button bindtap='delUser'>删除用户</button>
+<button bindtap='updUser'>更改用户</button>
+<button bindtap='findUser'>查找单个用户</button> -->
+
 <scroll-view class='listClass' scroll-x='true' hidden='{{dataList == null}}'>
   <view class='return' bindtap='returnTap'>
     返回

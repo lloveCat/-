@@ -14,6 +14,7 @@ var selectProvince = -1
 var selectCity = -1
 var cityName = null
 var provinceName = null
+var that = null;
 Page({
   data: {
     currentLevel: UNKNOW_LEVEL,
@@ -26,7 +27,7 @@ Page({
   //   })
   // },
   onLoad: function (options) {
-    console.log('1111')
+    that = this;
     //天气页面跳转过来的请求标识
     var add = null;
     if(options.add != null) {
@@ -41,41 +42,40 @@ Page({
     }
     if (app.globalData.provinceList) {
       provinceList = app.globalData.provinceList
-      this.setData({
+      that.setData({
         currentLevel: PROVINCE_LEVEL,
         dataList: app.globalData.provinceList
       })
     } else {
       //异步请求回调
-      this.setData({
+      that.setData({
         onLoadDate: true
       })
       wx.showLoading({
         title: '正在初始化...'
       })
-      app.globalData.that = this
       app.globalData.callback = res=> {
-        var tPage = app.globalData.that
-        tPage.provinceList = res.data
-        tPage.setData({
+        wx.hideLoading()
+        that.provinceList = res.data
+        that.setData({
           dataList: res.data,
           currentLevel: PROVINCE_LEVEL
         })
       }
       setTimeout(function(){
         wx.hideLoading()
-        if (getCurrentPages()[getCurrentPages().length-1].provinceList == null) {
+        if (that.provinceList == null) {
           wx.showToast({
             title: '请检查网络设置',
             icon: 'none',
             duration: 2000
           })
         }
-      },1000,null)
+      },2000,null)
     }
   },
   doBindTap: function(e) {
-    if (this.data.currentLevel == PROVINCE_LEVEL) {
+    if (that.data.currentLevel == PROVINCE_LEVEL) {
       selectProvince = e.target.dataset.id
       provinceName = e.target.dataset.name
       wx.showLoading({
@@ -89,7 +89,7 @@ Page({
           wx.setNavigationBarTitle({
             title: '' + provinceName,
           })
-          this.setData({
+          that.setData({
             currentLevel: CITY_LEVEL,
             dataList: cityList
           })
@@ -103,7 +103,7 @@ Page({
           })
         }
       })
-    } else if (this.data.currentLevel == CITY_LEVEL) {
+    } else if (that.data.currentLevel == CITY_LEVEL) {
       selectCity = e.target.dataset.id
       cityName = e.target.dataset.name
       wx.showLoading({
@@ -116,7 +116,7 @@ Page({
           wx.setNavigationBarTitle({
             title: '' + cityName,
           })
-          this.setData({
+          that.setData({
             currentLevel: COUNTRY_LEVEL,
             dataList: res.data
           })
@@ -130,7 +130,7 @@ Page({
           })
         }
       })
-    } else if (this.data.currentLevel == COUNTRY_LEVEL) {
+    } else if (that.data.currentLevel == COUNTRY_LEVEL) {
       // selectCountry = e.target.dataset.id
       var weatherId = e.target.dataset.weatherid
       wx.showLoading({
@@ -157,7 +157,6 @@ Page({
             }
           }
           //返回本次获取的内存索引
-          console.log(app.globalData.weatherList)
           if(index == -1) {
             index = app.globalData.weatherList.push(res.data)
           }
@@ -182,28 +181,65 @@ Page({
     }
   },
   returnTap: function(e) {
-    if (this.data.currentLevel == PROVINCE_LEVEL) {
+    if (that.data.currentLevel == PROVINCE_LEVEL) {
       wx.showToast({
         title: '无法返回，已经是最顶层',
         icon: 'none',
         duration: 2000
       })
-    } else if (this.data.currentLevel == CITY_LEVEL) {
+    } else if (that.data.currentLevel == CITY_LEVEL) {
       wx.setNavigationBarTitle({
         title: '',
       })  
-      this.setData({
+      that.setData({
         currentLevel: PROVINCE_LEVEL,
         dataList: provinceList
       })
-    } else if (this.data.currentLevel == COUNTRY_LEVEL) {
+    } else if (that.data.currentLevel == COUNTRY_LEVEL) {
       wx.setNavigationBarTitle({
         title: '' + cityName,
       })
-      this.setData({
+      that.setData({
         currentLevel: CITY_LEVEL,
         dataList: cityList
       })
     }
+  },
+  //以下是无用函数，用于测试Spring boot项目
+  findUserList : function(e) {
+    wx.request({
+      url: 'http://localhost:8080/searchUserList',
+    })
+  },
+  findUser: function(e) {
+    wx.request({
+      url: 'http://localhost:8080/searchUser?userId=4',
+    })
+  },
+  addUser: function(e) {
+    wx.request({
+      url: 'http://localhost:8080/addUser',
+      data: {
+        name: '黄帝',
+        age: 24,
+        sex: '男'
+      }
+    })
+  },
+  delUser: function(e) {
+    wx.request({
+      url: 'http://localhost:8080/deleteUser?userId=3',
+    })
+  },
+  updUser: function(e) {
+    wx.request({
+      url: 'http://localhost:8080/updateUser',
+      data: {
+        id: 6,
+        name: '黄帝2号',
+        age: 26,
+        sex: '男'
+      }
+    })
   }
 })

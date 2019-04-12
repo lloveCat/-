@@ -48,7 +48,6 @@ App({
         break;
       }
     }
-    console.log(provinceId)
     if (provinceId) {
       wx.request({
         url: this.globalData.baseUri + '/' + provinceId,
@@ -59,14 +58,12 @@ App({
               break;
             }
           }
-          console.log(cityId)
           if (cityId) {
             wx.request({
               url: this.globalData.baseUri + '/' + provinceId + '/' + cityId,
               success: res => {
                 console.log('获取成功')
                 weatherId = res.data[0].weather_id
-                console.log(weatherId)
                 for (var i = 0; i < res.data.length; i++) {
                   if (res.data[i].name == country) {
                     weatherId = res.data[i].weather_id
@@ -97,7 +94,7 @@ App({
             })
           } else {
             res = {
-              result: 'error'
+              result: 'not support location'
             }
             if (callback) {
               callback(res);
@@ -115,7 +112,7 @@ App({
       })
     } else {
       res = {
-        result: 'error'
+        result: 'not support location'
       }
       if (callback) {
         callback(res);
@@ -128,7 +125,6 @@ App({
     baseUri: 'http://guolin.tech/api/china',      //省、市、县网址
     baseWeatherUri: "http://guolin.tech/api/weather", //天气网址
     key: "67625eeac43f4b0bb42e58110a9a9f0f",      //密钥
-    that: null,
     provinceList: null,   //存储
     weatherList: null,        //存储
     callback: null,
