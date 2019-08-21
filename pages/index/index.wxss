@@ -19,7 +19,11 @@
 .usermotto {
   margin-top: 200px;
 } */
-
+.topFixed{
+  height: 65px;
+  position: fixed;
+  width: 100%;
+}
 .return{
   width: 40px;
   height: 36px;
@@ -29,8 +33,30 @@
   font-size: 16px;
   text-align: center;
 }
-.return botton{
-  border: 0px;
+.rightLogin{
+  width:36px;
+  height: 36px; 
+  text-align: initial;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  padding: 0;
+}
+.rightLogin button{
+  line-height: normal;
+  font-size:16px;
+  padding: 0;
+}
+.headImg{
+  width:36px;
+  height: 36px;
+  border-radius: 50%; 
+}
+.rightLogin button::after{
+  border: none;
+}
+.listClass{
+  height:600px;
 }
 .buttonClass{
   width: 250px;

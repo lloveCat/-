@@ -3,15 +3,24 @@
 <button bindtap='delUser'>删除用户</button>
 <button bindtap='updUser'>更改用户</button>
 <button bindtap='findUser'>查找单个用户</button> -->
-
-<scroll-view class='listClass' scroll-x='true' hidden='{{dataList == null}}'>
+<view class='topFixed'>
   <view class='return' bindtap='returnTap'>
     返回
   </view>
+  <view class="rightLogin">
+    <button wx:if="{{!isLogin}}" open-type="getUserInfo" bindgetuserinfo='doBindGetUserInfo'>登录</button>
+    <block wx:else>
+      <image class="headImg" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    </block>
+  </view>
+</view>
+<view style="height:65px;" />
+  <scroll-view class='listClass' scroll-y='true' hidden='{{dataList == null}}' scroll-top='100'>
   <view wx:for="{{dataList}}" wx:for-item="data" wx:for-index="index">
     <!--省和市获取到的数据不带weather_Id字段 -->
-    <button bindtap='doBindTap' data-id='{{data.id}}' data-name='{{data.name}}'
-     data-weatherid='{{data.weather_id}}' class='buttonClass'>{{data.name}}
+    <button bindtap='doBindTap' wx:if='{{data.weather_id != null}}' data-id='{{data.id}}' data-name='{{data.name}}' data-weatherid='{{data.weather_id}}' class='buttonClass'>{{data.name}}
+    </button>
+    <button bindtap='doBindTap' wx:else data-id='{{data.id}}' data-name='{{data.name}}' class='buttonClass'>{{data.name}}
     </button>
   </view>
 </scroll-view>

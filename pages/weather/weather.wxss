@@ -9,9 +9,8 @@
 .topContainer{
   width: 100%;
   height: 30px;
-  margin:10px 0 5px 0;
+  top:10px;
   /* background-color: blue; */
-  position:relative;
   text-align: center;
 }
 
@@ -47,7 +46,7 @@
 }
 
 .swiperContainer{
-  height: 710px;
+  height: 675px;
 }
 
 /*当天天气容器 */
@@ -114,16 +113,17 @@
 /*空气质量内容 */
 .aqi{
   margin-left: 20%;
+  text-align: center;
   display: inline-block;
 }
 .pm25{
   position: absolute;
+  text-align: center;
   display: inline-block;
   right: 20%;
 }
 .Num{
   width: 100%;
-  text-align: center;
   font-size: 32px;
   display: block;
 }
